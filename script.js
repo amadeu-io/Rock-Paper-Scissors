@@ -21,11 +21,11 @@ function playRound(playerSelection, computerSelection) {
     //cases when player plays rock
     if (playerSelection == 'rock') {
         if (computerSelection == 'rock') {
-            return 'It\'s a tie!';
+            return { message: 'It\'s a tie!', player: 0, computer: 0 };
         } else if (computerSelection == 'paper') {
-            return 'You lose! Rock loses to Paper!'
+            return { message: 'You lose! Rock loses to Paper!', player: 0, computer: 1 };
         } else {
-            return 'You win! Rock beats Scissors!'
+            return { message: 'You win! Rock beats Scissors!', player: 1, computer: 0 };
         }
     }
 
@@ -34,9 +34,9 @@ function playRound(playerSelection, computerSelection) {
         if (computerSelection == 'rock') {
             return 'You win! Paper beats Rock!';
         } else if (computerSelection == 'paper') {
-            return 'It\'s a tie!'
+            return 'It\'s a tie!';
         } else {
-            return 'You lose! Paper loses to Scissors!'
+            return 'You lose! Paper loses to Scissors!';
         }
     }
 
@@ -45,21 +45,42 @@ function playRound(playerSelection, computerSelection) {
         if (computerSelection == 'rock') {
             return 'You lose! Scissors lose to Rock!';
         } else if (computerSelection == 'paper') {
-            return 'You win! Scissors beat Paper!'
+            return 'You win! Scissors beat Paper!';
         } else {
-            return 'It\'s a tie!'
+            return 'It\'s a tie!';
         }
     }
 
     //cases when input is wrong
     else {
-        return 'Wrong input, please enter Rock, Paper, or Scissors.'
+        return 'Wrong input, please enter Rock, Paper, or Scissors.';
     }
 }
 
 // player and computer choices
-const playerSelection = prompt('What do you want to play?').toLowerCase();
-const computerSelection = getComputerChoice()
+// const playerSelection = prompt('What do you want to play?').toLowerCase();
+
+
 
 // log the result of the round
-console.log(playRound(playerSelection, computerSelection));
+//console.log(playRound(playerSelection, computerSelection).player);
+
+let playerCount = 0; 
+let computerCount = 0;
+
+for (let i = 0; i < 5; i++) {
+
+    const playerSelection = 'rock';
+    const computerSelection = getComputerChoice();
+
+    //playerCount increases by 1 every time player wins
+    playerCount += playRound(playerSelection, computerSelection).player;
+
+    //computerCount increases by 1 every time computer wins
+    computerCount += playRound(playerSelection, computerSelection).computer;
+    
+
+ }
+  
+ console.log(`playerCount: ${playerCount}`);
+ console.log(`computerCount: ${computerCount}`);
