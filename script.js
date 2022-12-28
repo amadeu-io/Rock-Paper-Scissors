@@ -15,43 +15,51 @@ function getComputerChoice() {
     }
 }
 
-let computerSelection = getComputerChoice()
-
 // this function plays a single round
 function playRound(playerSelection, computerSelection) {
 
     //cases when player plays rock
     if (playerSelection == 'rock') {
         if (computerSelection == 'rock') {
-            return 'tie';
+            return 'It\'s a tie!';
         } else if (computerSelection == 'paper') {
-            return 'computer wins'
+            return 'You lose! Rock loses to Paper!'
         } else {
-            return 'player wins'
+            return 'You win! Rock beats Scissors!'
         }
     }
 
     //cases when player plays paper
     else if (playerSelection == 'paper') {
         if (computerSelection == 'rock') {
-            return 'player wins';
+            return 'You win! Paper beats Rock!';
         } else if (computerSelection == 'paper') {
-            return 'tie'
+            return 'It\'s a tie!'
         } else {
-            return 'computer wins'
+            return 'You lose! Paper loses to Scissors!'
         }
     }
 
     //cases when player plays scissors
-    else {
+    else if (playerSelection == 'scissors') {
         if (computerSelection == 'rock') {
-            return 'computer wins';
+            return 'You lose! Scissors lose to Rock!';
         } else if (computerSelection == 'paper') {
-            return 'player wins'
+            return 'You win! Scissors beat Paper!'
         } else {
-            return 'tie'
+            return 'It\'s a tie!'
         }
+    }
+
+    //cases when input is wrong
+    else {
+        return 'Wrong input, please enter Rock, Paper, or Scissors.'
     }
 }
 
-console.log(playRound('rock', computerSelection))
+// player and computer choices
+const playerSelection = prompt('What do you want to play?').toLowerCase();
+const computerSelection = getComputerChoice()
+
+// log the result of the round
+console.log(playRound(playerSelection, computerSelection));
