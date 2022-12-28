@@ -57,30 +57,35 @@ function playRound(playerSelection, computerSelection) {
     }
 }
 
-// player and computer choices
-// const playerSelection = prompt('What do you want to play?').toLowerCase();
+function game() {
 
+    let playerCount = 0; 
+    let computerCount = 0;
 
+    for (let i = 0; i < 5; i++) {
 
-// log the result of the round
-//console.log(playRound(playerSelection, computerSelection).player);
+        const playerSelection = 'rock';
+        const computerSelection = getComputerChoice();
+        const round = playRound(playerSelection, computerSelection);
 
-let playerCount = 0; 
-let computerCount = 0;
+        //playerCount increases by 1 every time player wins
+        playerCount += round.player;
 
-for (let i = 0; i < 5; i++) {
+        //computerCount increases by 1 every time computer wins
+        computerCount += round.computer;
 
-    const playerSelection = 'rock';
-    const computerSelection = getComputerChoice();
+        //log the current score of each round
+        console.log(`player: ${playerCount} computer: ${computerCount}`)
+    }
 
-    //playerCount increases by 1 every time player wins
-    playerCount += playRound(playerSelection, computerSelection).player;
-
-    //computerCount increases by 1 every time computer wins
-    computerCount += playRound(playerSelection, computerSelection).computer;
-    
-
- }
+    //find the winner of the 5 rounds and log it on screen
+    if (playerCount > computerCount) {
+        console.log('player wins');
+    } else if (playerCount < computerCount) {
+        console.log('computer wins');
+    } else {
+        console.log('tie');
+    }
+}
   
- console.log(`playerCount: ${playerCount}`);
- console.log(`computerCount: ${computerCount}`);
+game();
