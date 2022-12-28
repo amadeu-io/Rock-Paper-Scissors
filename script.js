@@ -21,33 +21,33 @@ function playRound(playerSelection, computerSelection) {
     //cases when player plays rock
     if (playerSelection == 'rock') {
         if (computerSelection == 'rock') {
-            return { message: 'It\'s a tie!', player: 0, computer: 0 };
+            return { player: 0, computer: 0 };
         } else if (computerSelection == 'paper') {
-            return { message: 'You lose! Rock loses to Paper!', player: 0, computer: 1 };
+            return { player: 0, computer: 1 };
         } else {
-            return { message: 'You win! Rock beats Scissors!', player: 1, computer: 0 };
+            return { player: 1, computer: 0 };
         }
     }
 
     //cases when player plays paper
     else if (playerSelection == 'paper') {
         if (computerSelection == 'rock') {
-            return 'You win! Paper beats Rock!';
+            return { player: 1, computer: 0 };
         } else if (computerSelection == 'paper') {
-            return 'It\'s a tie!';
+            return { player: 0, computer: 0 }
         } else {
-            return 'You lose! Paper loses to Scissors!';
+            return { player: 0, computer: 1 };
         }
     }
 
     //cases when player plays scissors
     else if (playerSelection == 'scissors') {
         if (computerSelection == 'rock') {
-            return 'You lose! Scissors lose to Rock!';
+            return { player: 0, computer: 1 };
         } else if (computerSelection == 'paper') {
-            return 'You win! Scissors beat Paper!';
+            return { player: 1, computer: 0 };
         } else {
-            return 'It\'s a tie!';
+            return { player: 0, computer: 0 };
         }
     }
 
