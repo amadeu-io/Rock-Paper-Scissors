@@ -1,6 +1,5 @@
-5 round Rock, Paper, Scissors game built in JavaScript.
+New 5 round Rock, Paper, Scissors game built in JavaScript.
 
-At every round, it prompts the user to pick either they want to play Rock, Paper or Scissors.
+This is the updated version. It uses DOM manipulation to allow the game to happen in the page and not in the console.
 
-The computer then makes a random choice and the program finds who the winner of that round is, 
-displaying it on a score count that updates at every round. After the 5 rounds, the final score and winner is shown.
+When the game ends, if you want to play again you need to refresh the page. Note to self: An upgrade possibility is to add a reset button that does it.

@@ -3,91 +3,94 @@ function randomGen(min, max) {
     return Math.floor(Math.random()*(max-min+1)+min);
 }
 
-// this function returns either rock, paper or scissors randomly
+// returns either rock, paper or scissors randomly
 function getComputerChoice() {
     let randint = randomGen(1,3);
     if (randint == 1) {
-        return 'rock';
+        return 'Rock';
     } else if (randint == 2) {
-        return 'paper';
+        return 'Paper';
     } else {
-        return 'scissors';
+        return 'Scissors';
     }
 }
 
-// this function plays a single round
+// plays a single round and returns w, l or t
 function playRound(playerSelection, computerSelection) {
-
-    // cases when player plays rock
-    if (playerSelection == 'rock') {
-        if (computerSelection == 'rock') {
-            return { player: 0, computer: 0 };
-        } else if (computerSelection == 'paper') {
-            return { player: 0, computer: 1 };
-        } else {
-            return { player: 1, computer: 0 };
-        }
-    }
-
-    // cases when player plays paper
-    else if (playerSelection == 'paper') {
-        if (computerSelection == 'rock') {
-            return { player: 1, computer: 0 };
-        } else if (computerSelection == 'paper') {
-            return { player: 0, computer: 0 }
-        } else {
-            return { player: 0, computer: 1 };
-        }
-    }
-
-    // cases when player plays scissors
-    else {
-        if (computerSelection == 'rock') {
-            return { player: 0, computer: 1 };
-        } else if (computerSelection == 'paper') {
-            return { player: 1, computer: 0 };
-        } else {
-            return { player: 0, computer: 0 };
-        }
-    }
-}
-
-// this function plays the whole 5 round game and displays the output at every round 
-function game() {
-
-    let playerCount = 0; 
-    let computerCount = 0;
-
-    for (let i = 0; i < 5; i++) {
-
-        const playerSelection = prompt('What do you want to play?').toLowerCase();
-        const computerSelection = getComputerChoice();
-        const round = playRound(playerSelection, computerSelection);
-
-        // playerCount increases by 1 every time player wins
-        playerCount += round.player;
-
-        // computerCount increases by 1 every time computer wins
-        computerCount += round.computer;
-
-        // log the current score of each round
-        alert(`player: ${playerSelection} - computer: ${computerSelection} \nplayer: ${playerCount} - computer: ${computerCount}`);
-        console.log(`player: ${playerCount} computer: ${computerCount}`);
-
-    }
-
-    // find the winner of the 5 rounds and log it on screen
-    if (playerCount > computerCount) {
-        alert('player wins!');
-        console.log('player wins');
-    } else if (playerCount < computerCount) {
-        alert('computer wins!');
-        console.log('computer wins!');
+    if (playerSelection == computerSelection) {
+        return 't'; // tie
+    } else if (playerSelection == 'Rock' && computerSelection == 'Scissors' || 
+    playerSelection == 'Paper' && computerSelection == 'Rock' ||
+    playerSelection == 'Scissors' && computerSelection == 'Paper') {
+        return 'w'; // win
     } else {
-        alert('tie!');
-        console.log('tie!');
+        return 'l'; // loss
     }
 }
 
-// we call the function to play the game  
-game();
+// receives w, l or t and returns {playerCount: 1, computerCount: 2} ...
+function countScore(round_result) {
+    if (round_result == 'w') {
+        player += 1;
+    } else if (round_result == 'l') {
+        computer += 1;
+    }
+    return { player, computer };
+}
+
+// recieves score and returns ending message when 5 points are reached
+function endGame(player, computer) {
+    if (player >= 5) {
+        return 'Player Wins!';
+    } if (computer >= 5) {
+        return 'Computer Wins!';
+    } else {
+        return false; // it returns false as long as the game keeps going
+    }
+}
+
+// executes the game
+let game = function playGame() {
+
+    let playerChoice = event.target.className; // equals the clicked event ('rock', 'paper'...)
+    let computerChoice = getComputerChoice(); // random computer choice
+    let round = playRound(playerChoice, computerChoice); // w, l or t
+    let score = countScore(round); // {player: , computer: }
+ 
+    // show score to page
+    const playerScore = document.querySelector('.playerScore');
+    playerScore.innerHTML = score.player; 
+    const computerScore = document.querySelector('.computerScore');
+    computerScore.innerHTML = score.computer; 
+
+    // show player & computer choices
+    const playerChoiceNode = document.querySelector('.playerChoice');
+    playerChoiceNode.innerHTML = playerChoice; 
+    const vs = document.querySelector('.vs');
+    vs.innerHTML = 'vs.';
+    const computerChoiceNode = document.querySelector('.computerChoice');
+    computerChoiceNode.innerHTML = computerChoice; 
+
+    // executes when game ends
+    if (endGame(score.player, score.computer)) { // endGame will return false as long as the game is on
+        const div_score = document.querySelector('.score');
+        div_score.innerHTML = endGame(score.player, score.computer);
+    };
+
+};
+
+// start of the program
+let player = 0; // initial scores
+let computer = 0;
+
+const Rock = document.querySelector('.Rock');
+Rock.addEventListener('click', game);
+
+const Paper = document.querySelector('.Paper');
+Paper.addEventListener('click', game);
+
+const Scissors = document.querySelector('.Scissors');
+Scissors.addEventListener('click', game);
+
+
+
