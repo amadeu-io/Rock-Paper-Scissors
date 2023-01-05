@@ -1,4 +1,6 @@
-5 round, minimalistic Rock, Paper, Scissors game built in JavaScript, HTML and CSS
+5 round, minimalistic Rock, Paper, Scissors game built in JavaScript, HTML and CSS 🪨📰✂️
+
+Link➡️: https://nightrunner4.github.io/Rock-Paper-Scissors/
 
 First, the user picks a choice
 
@@ -15,6 +17,7 @@ Made by nightrunner4
 
 Font is 04b_30 by Yuji Oshimoto   
 
+
 This version was a great exercise of DOM manipulation. While the game has a lot of room for improvement, I wanted to have a simple, finished version that worked.
 
 Things that can be worked on:
@@ -24,5 +27,6 @@ Things that can be worked on:
 - Show unclickable buttons just like the player ones, that highlight showing the computer choice
 - If the previous feature is implemented, then the message at the bottom of the page could just be
 'player wins', 'computer wins' or 'tie'
+- Make it mobile compatible
 
 
