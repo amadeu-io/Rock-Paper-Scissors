@@ -1,6 +1,6 @@
 5 round, minimalistic Rock, Paper, Scissors game built in JavaScript, HTML and CSS 🪨📰✂️
 
-Link➡️: https://nightrunner4.github.io/Rock-Paper-Scissors/
+Link ➡️: https://nightrunner4.github.io/Rock-Paper-Scissors/
 
 First, the user picks a choice
 
