@@ -15,27 +15,18 @@ function getComputerChoice() {
     }
 }
 
-// plays a single round and returns w, l or t
-function playRound(playerSelection, computerSelection) {
+// plays a round and adds result to score (getScore.player, getScore.computer)
+function getScore(playerSelection, computerSelection) {
     if (playerSelection == computerSelection) {
-        return 't'; // tie
+        // Tie. Do nothing. Having a dedicated 'if' for tie allows for code to be shorter
     } else if (playerSelection == 'Rock' && computerSelection == 'Scissors' || 
     playerSelection == 'Paper' && computerSelection == 'Rock' ||
     playerSelection == 'Scissors' && computerSelection == 'Paper') {
-        return 'w'; // win
+        player += 1; // win
     } else {
-        return 'l'; // loss
+        computer += 1; // loss
     }
-}
-
-// receives w, l or t and returns {playerCount: 1, computerCount: 2} ...
-function countScore(round_result) {
-    if (round_result == 'w') {
-        player += 1;
-    } else if (round_result == 'l') {
-        computer += 1;
-    }
-    return { player, computer };
+    return {player, computer}
 }
 
 // recieves score and returns ending message when 5 points are reached
@@ -45,7 +36,7 @@ function endGame(player, computer) {
     } if (computer >= 5) {
         return 'Computer Wins!';
     } else {
-        return false; // it returns false as long as the game keeps going
+        return false; // returns false as long as the game keeps going
     }
 }
 
@@ -53,10 +44,9 @@ function endGame(player, computer) {
 let game = function playGame() {
 
     let playerChoice = event.target.className; // equals the clicked event ('rock', 'paper'...)
-    let computerChoice = getComputerChoice(); // random computer choice
-    let round = playRound(playerChoice, computerChoice); // w, l or t
-    let score = countScore(round); // {player: , computer: }
- 
+    let computerChoice = getComputerChoice();
+    let score = getScore(playerChoice, computerChoice); 
+
     // show score to page
     const playerScore = document.querySelector('.playerScore');
     playerScore.innerHTML = score.player; 
@@ -72,11 +62,15 @@ let game = function playGame() {
     computerChoiceNode.innerHTML = computerChoice; 
 
     // executes when game ends
-    if (endGame(score.player, score.computer)) { // endGame will return false as long as the game is on
+    if (endGame(score.player, score.computer)) { 
         const div_score = document.querySelector('.score');
-        div_score.innerHTML = endGame(score.player, score.computer);
+        const div_choices = document.querySelector('.choices')
+        div_choices.innerHTML = '';
+        div_score.innerHTML = `
+        ${endGame(score.player, score.computer)} ${score.player} - ${score.computer}`;
+        div_score.classList.remove('score'); // score-end centers the ending message
+        div_score.classList.add('score-end');
     };
-
 };
 
 // start of the program
