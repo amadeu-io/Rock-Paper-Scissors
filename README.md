@@ -1,6 +1,6 @@
 5 round, minimalistic Rock, Paper, Scissors game built in JavaScript, HTML and CSS 🪨📰✂️
 
-Link ➡️: https://amadeu-io.github.io/Rock-Paper-Scissors/
+Link ➡️: https://amadeuio.github.io/Rock-Paper-Scissors/
 
 First, the user picks a choice
 
@@ -12,8 +12,6 @@ The first to reach 5 wins, wins the game. To reset the game you can just refresh
 
 This is the updated version. It uses DOM manipulation to allow the game to have a UI.
 Most of the game happens in JavaScript, while the HTML and CSS are kept very simple.
-
-Made by amadeu-io
 
 Font is 04b_30 by Yuji Oshimoto
 
